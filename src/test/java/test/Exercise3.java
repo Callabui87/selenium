@@ -48,9 +48,10 @@ public class Exercise3 {
 		driver.findElement(By.name("ConfirmPassword")).sendKeys("calla306");
 
 		driver.findElement(By.id("register-button")).click();
-		
-		driver.findElement(By.xpath(//*[@class='result')).getText("Your registration completed");
-		
+
+		driver.findElement(By.xpath("//div[@class='result']")).getText();
+		System.out.println("Your registration completed");
+
 		driver.close();
 
 		driver.quit();
