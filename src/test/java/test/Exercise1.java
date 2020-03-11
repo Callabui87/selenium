@@ -69,6 +69,11 @@ public class Exercise1 {
 
 	@Test
 	public void test_case3() {
+		driver.get("http://live.guru99.com/");
+		driver.findElement(By.xpath("//a[text()='Mobile']")).click();
+		driver.findElement(By.xpath("//a[@title='Samsung Galaxy']/following-sibling::div//span[text()='Add to Cart']"))
+				.click();
+		assertEquals(driver.findElement(By.xpath("//span[text()='1']")).getText(), "1");
 
 	}
 
