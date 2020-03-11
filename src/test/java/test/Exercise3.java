@@ -1,22 +1,20 @@
 package test;
 
-import org.openqa.jetty.html.Select;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
-@Test
 public class Exercise3 {
+
+	@Test
 	public void test_case1() {
 		WebDriver driver = new FirefoxDriver();
 
 		// Dang nhap vao site
 
 		driver.get("https://demo.nopcommerce.com/register");
-
-		// Click register
-		driver.findElement(By.linkText("New Customer")).click();
 
 		// Add info vao form personal details
 
@@ -30,12 +28,10 @@ public class Exercise3 {
 		drpDay.selectByVisibleText("30");
 
 		Select drpMonth = new Select(driver.findElement(By.name("DateOfBirthMonth")));
-		drpMonth.selectByVisibleText("6");
+		drpMonth.selectByVisibleText("June");
 
 		Select drpYear = new Select(driver.findElement(By.name("DateOfBirthYear")));
-		drpCountry.selectByVisibleText("1987");
-
-		driver.findElement(By.name("city")).sendKeys("HN");
+		drpYear.selectByVisibleText("1987");
 
 		driver.findElement(By.name("Email")).sendKeys("calla@test.com");
 
