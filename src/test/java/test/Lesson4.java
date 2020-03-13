@@ -20,7 +20,7 @@ public class Lesson4 {
 	WebDriver driver;
 
 	@Test(enabled = false)
-	public void Authenalert() throws Exception {
+	public void TC1() throws Exception {
 		driver.get("http://admin:admin@the-internet.herokuapp.com/basic_auth");
 		driver.findElement(By.xpath("//div[@class='example']/p")).getText();
 		System.out.println("Congratulations! You must have the proper credentials.");
@@ -28,24 +28,24 @@ public class Lesson4 {
 
 	}
 
-	@Test(enabled = false)
-	public void HoverElement1() throws Exception {
+	@Test(enabled = true)
+	public void TC2() throws Exception {
 		driver.get("http://www.myntra.com");
 
-		WebElement discover = driver.findElement(By.linkText("Discover"));
+		WebElement discover = driver.findElement(By.xpath("//a[text()='Discover']"));
 
 		Actions action = new Actions(driver);
 		action.moveToElement(discover).build().perform();
-
+		Thread.sleep(2000);
 		driver.findElement(By.xpath("//a[text()='American Eagle']")).click();
 
 		System.out.println("verify đã chuyển page thành công");
-		assertEquals(driver.getCurrentUrl(), "https://www.myntra.com/american-eagle/");
+		assertEquals(driver.getCurrentUrl(), "https://www.myntra.com/american-eagle");
 
 	}
 
 	@Test(enabled = false)
-	public void clickandhold() throws Exception {
+	public void TC3() throws Exception {
 		driver.get("https://jqueryui.com/resources/demos/selectable/display-grid.html");
 
 		WebElement element1 = driver.findElement(By.xpath("//li[text()=1]"));
@@ -56,7 +56,7 @@ public class Lesson4 {
 	}
 
 	@Test(enabled = false)
-	public void mouseandkeyboard() throws Exception {
+	public void TC4() throws Exception {
 		driver.get("https://jqueryui.com/resources/demos/selectable/display-grid.html");
 
 		WebElement element1 = driver.findElement(By.xpath("//li[text()=1]"));
@@ -81,7 +81,7 @@ public class Lesson4 {
 	}
 
 	@Test(enabled = false)
-	public void HoverElement2() throws Exception {
+	public void TC5() throws Exception {
 		driver.get("http://swisnl.github.io/jQuery-contextMenu/demo.html");
 
 		// Right click vào “right click me”
@@ -108,7 +108,7 @@ public class Lesson4 {
 	}
 
 	@Test(enabled = false)
-	public void Dradanddrop() throws Exception {
+	public void TC6() throws Exception {
 		driver.get("https://demos.telerik.com/kendo-ui/dragdrop/angular");
 		Thread.sleep(5000);
 
