@@ -2,6 +2,7 @@ package test;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
@@ -22,13 +23,13 @@ public class Lesson4 {
 	@Test(enabled = false)
 	public void TC1() throws Exception {
 		driver.get("http://admin:admin@the-internet.herokuapp.com/basic_auth");
-		driver.findElement(By.xpath("//div[@class='example']/p")).getText();
-		System.out.println("Congratulations! You must have the proper credentials.");
-		Thread.sleep(5000);
+		String message = driver.findElement(By.xpath("//div[@class='example']/p")).getText();
+		assertEquals(message, "Congratulations! You must have the proper credentials.");
+		System.out.println("Completed");
 
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void TC2() throws Exception {
 		driver.get("http://www.myntra.com");
 
@@ -52,31 +53,6 @@ public class Lesson4 {
 		WebElement element4 = driver.findElement(By.xpath("//li[text()=4]"));
 		Actions action = new Actions(driver);
 		action.clickAndHold(element1).moveToElement(element4).release().build().perform();
-
-	}
-
-	@Test(enabled = false)
-	public void TC4() throws Exception {
-		driver.get("https://jqueryui.com/resources/demos/selectable/display-grid.html");
-
-		WebElement element1 = driver.findElement(By.xpath("//li[text()=1]"));
-		WebElement element3 = driver.findElement(By.xpath("//li[text()=3]"));
-		WebElement element5 = driver.findElement(By.xpath("//li[text()=5]"));
-		WebElement element7 = driver.findElement(By.xpath("//li[text()=7]"));
-		WebElement element9 = driver.findElement(By.xpath("//li[text()=9]"));
-		Actions action = new Actions(driver);
-		action.keyDown(element1, Keys.CONTROL);
-		action.keyDown(element3, Keys.CONTROL);
-		action.keyDown(element5, Keys.CONTROL);
-		action.keyDown(element7, Keys.CONTROL);
-		action.keyDown(element9, Keys.CONTROL);
-		action.build().perform();
-
-		element1.isSelected();
-		element3.isSelected();
-		element5.isSelected();
-		element7.isSelected();
-		element9.isSelected();
 
 	}
 
@@ -107,7 +83,7 @@ public class Lesson4 {
 
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TC6() throws Exception {
 		driver.get("https://demos.telerik.com/kendo-ui/dragdrop/angular");
 		Thread.sleep(5000);
@@ -120,7 +96,46 @@ public class Lesson4 {
 		action.clickAndHold(smallcircle).moveToElement(bigcircle).release().build().perform();
 
 		String message = driver.findElement(By.xpath("//div[text()='You did great!']")).getText();
-		System.out.println(message);
+		assertEquals(message, "You did great!");
+		System.out.println("Completed");
+		Thread.sleep(5000);
+	}
+
+	@Test(enabled = false)
+	public void TC4_1() throws Exception {
+		driver.get("https://jqueryui.com/resources/demos/selectable/display-grid.html");
+
+		Thread.sleep(5000);
+		// Xac dinh cac nut click
+		WebElement o1 = driver.findElement(By.xpath("//li[text()='1']"));
+		WebElement o2 = driver.findElement(By.xpath("//li[text()='5']"));
+		WebElement o3 = driver.findElement(By.xpath("//li[text()='9']"));
+
+		// Thao tac click cac nut
+		Actions action = new Actions(driver);
+		action.keyDown(Keys.CONTROL).click(o1).click(o2).click(o3).build().perform();
+
+		// Verify cac nut da duoc chon hay chua & tim ra nut chua chon duoc
+
+		/*
+		 * String chuoi = "ui-state-default ui-selectee ui-selected";// gia tri class
+		 * cac o duoc chon boolean a = o1.getAttribute("class").equals(chuoi); boolean b
+		 * = o2.getAttribute("class").equals(chuoi); boolean c =
+		 * o3.getAttribute("class").equals(chuoi);
+		 * 
+		 * if (a == true && b == true && c == true) {
+		 * System.out.println("Cac o da duoc chon"); } else {
+		 * System.out.println("Co o chưa duoc chon"); }
+		 */
+		List<WebElement> list = driver
+				.findElements(By.xpath("//li[@class='ui-state-default ui-selectee ui-selected']"));
+		// String teno = list.get(1).getText();
+
+		for (WebElement x : list) {
+			System.out.println("Chuoi la" + x.getText());
+		}
+
+		Thread.sleep(10000);
 
 	}
 
