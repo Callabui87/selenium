@@ -28,18 +28,25 @@ public class Lesson5 {
 
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void sendkey() throws Exception {
 
 		String upload1 = "C:\\Users\\nsd\\Downloads\\2020-03-10_1318.png";
 		driver.findElement(By.xpath("//span[text()='Add files...']/following-sibling::input")).sendKeys(upload1);
 		String s = driver.findElement(By.xpath("//td/p")).getText();
 		Thread.sleep(3000);
+
 		System.out.println("File upload :" + s);
+		driver.findElement(By.xpath("//*[@id=\"fileupload\"]/table/tbody/tr/td[4]/button[2]/span")).click();
+		Thread.sleep(2000);
+
+		String image = driver.findElement(By.xpath("//span[@class='preview']/a")).getAttribute("title");
+		System.out.println("File da upload:" + image);
+		Thread.sleep(5000);
 
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void AutoIT() throws Exception {
 
 		driver.findElement(By.cssSelector(".btn.btn-success.fileinput-button")).click();
